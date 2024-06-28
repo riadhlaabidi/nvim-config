@@ -578,12 +578,11 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         gopls = {},
+        tsserver = {},
         html = {
           capabilities = capabilities,
         },
-        cssls = {
-          capabilities = capabilities,
-        },
+        cssls = {},
         tailwindcss = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -593,7 +592,6 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {},
         dockerls = {},
         bashls = {},
         docker_compose_language_service = {},
@@ -768,14 +766,14 @@ require('lazy').setup({
           --    $body
           --  end
           --
-          -- <c-l> will move you to the right of each of the expansion locations.
-          -- <c-h> is similar, except moving you backwards.
-          ['<C-l>'] = cmp.mapping(function()
+          -- <c-k> will move you to the right of each of the expansion locations.
+          -- <c-j> is similar, except moving you backwards.
+          ['<C-k>'] = cmp.mapping(function()
             if luasnip.expand_or_locally_jumpable() then
               luasnip.expand_or_jump()
             end
           end, { 'i', 's' }),
-          ['<C-h>'] = cmp.mapping(function()
+          ['<C-j>'] = cmp.mapping(function()
             if luasnip.locally_jumpable(-1) then
               luasnip.jump(-1)
             end
@@ -786,6 +784,7 @@ require('lazy').setup({
         },
         sources = {
           { name = 'nvim_lsp' },
+          { name = 'buffer' },
           { name = 'luasnip' },
           { name = 'path' },
         },
