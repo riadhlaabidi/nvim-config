@@ -1,6 +1,7 @@
 return {
   'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
+  lazy = false,
+  priority = 100,
   dependencies = {
     'onsails/lspkind.nvim',
     'saadparwaiz1/cmp_luasnip',
@@ -35,6 +36,10 @@ return {
   },
 
   config = function()
+    require('lspkind').init {
+      mode = 'symbol_text',
+    }
+
     -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
