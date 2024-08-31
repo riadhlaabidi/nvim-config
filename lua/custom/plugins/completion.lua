@@ -1,13 +1,10 @@
 return {
   'hrsh7th/nvim-cmp',
-  lazy = false,
-  priority = 100,
+  event = 'InsertEnter',
   dependencies = {
-    'onsails/lspkind.nvim',
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
-    'hrsh7th/cmp-buffer',
 
     -- Snippet Engine & its associated nvim-cmp source
     {
@@ -36,28 +33,16 @@ return {
   },
 
   config = function()
-    require('lspkind').init {
-      mode = 'symbol_text',
-    }
-
-    -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
+    luasnip.config.setup {}
 
     cmp.setup {
-      sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'path' },
-        { name = 'buffer' },
-      },
-
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
-
       completion = { completeopt = 'menu,menuone,noinsert' },
 
       -- For an understanding of why these mappings were
@@ -111,6 +96,16 @@ return {
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+      },
+      sources = {
+        {
+          name = 'lazydev',
+          -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
+          group_index = 0,
+        },
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        { name = 'path' },
       },
     }
   end,
