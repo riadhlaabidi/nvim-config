@@ -166,12 +166,12 @@ return {
       local servers = {
         clangd = {},
         gopls = {},
-        tsserver = {},
         html = {
           capabilities = capabilities,
         },
         cssls = {},
         tailwindcss = {},
+        ts_ls = {},
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -181,9 +181,8 @@ return {
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         dockerls = {},
-        bashls = {},
         docker_compose_language_service = {},
-
+        bashls = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
