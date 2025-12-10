@@ -17,17 +17,17 @@ local workspace_root = vim.fn.expand '~/jdtls-workspace'
 local workspace_dir = workspace_root .. '/' .. project_name
 local jdtls_dir = vim.fn.stdpath 'data' .. '/jdtls'
 local config_dir = jdtls_dir .. '/config_linux'
-local launcher = jdtls_dir .. '/plugins/org.eclipse.equinox.launcher_1.7.0.v20250519-0528.jar'
+local launcher = jdtls_dir .. '/plugins/org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar'
 
 local config = {
   cmd = {
-    '/usr/lib/jvm/java-21-openjdk/bin/java',
+    'java',
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
-    '-Dlog.protocol=true',
     '-Dlog.level=ALL',
     '-Xmx1G',
+    '--add-modules=ALL-SYSTEM',
     '-jar',
     launcher,
     '-configuration',
@@ -38,7 +38,7 @@ local config = {
   root_dir = root,
   settings = {
     java = {
-      home = '/usr/lib/jvm/java-21-openjdk',
+      home = '/usr/lib/jvm/java-25-openjdk',
       configuration = {
         runtimes = {
           {
@@ -52,6 +52,10 @@ local config = {
           {
             name = 'JavaSE-21',
             path = '/usr/lib/jvm/java-21-openjdk/',
+          },
+          {
+            name = 'JavaSE-25',
+            path = '/usr/lib/jvm/java-25-openjdk/',
           },
         },
       },
